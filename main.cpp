@@ -8,7 +8,7 @@
 std::string getString(const cv::Mat &img, int gap, std::vector<char> &preservedVector)
 {
 	std::string str = "";
-	const char chars[] = "$@0:+~... ";
+	const char chars[] = "@$:+~,..  ";
 	const int charsSize = sizeof(chars) - 1;
 	for (int i = 0; i < img.rows; i += gap)
 	{
@@ -31,7 +31,7 @@ std::string getString(const cv::Mat &img, int gap, std::vector<char> &preservedV
 
 int main()
 {
-
+	// cv::VideoCapture cap("http://192.168.31.105:8080/video");
 	cv::VideoCapture cap(0, cv::CAP_V4L2);
 	cap.set(cv::CAP_PROP_CONVERT_RGB, 1);
 	cv::Mat img, simg;
@@ -47,7 +47,7 @@ int main()
 	text.setFont(font);
 	text.setFillColor(sf::Color::White);
 	text.setCharacterSize(20);
-	text.setLetterSpacing(0);
+	text.setLetterSpacing(0.3);
 	text.setLineSpacing(0.7);
 	text.setString(getString(img, gap, v));
 
